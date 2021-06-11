@@ -18,6 +18,7 @@ import { createBoldPlugin, withBoldOptions } from './plugins/Bold';
 import { withCodeOptions, createCodePlugin } from './plugins/Code';
 import { withItalicOptions, createItalicPlugin } from './plugins/Italic';
 import { createUnderlinePlugin, withUnderlineOptions } from './plugins/Underline';
+import { createQuotePlugin, withQuoteOptions } from './plugins/Quote';
 
 type ConnectedProps = {
   editorId?: string;
@@ -40,6 +41,8 @@ const plugins = [
   createListPlugin(),
   createHrPlugin(),
   createHeadingPlugin(),
+  createHeadingPlugin(),
+  createQuotePlugin(),
 
   // Marks
   createBoldPlugin(),
@@ -53,6 +56,7 @@ const options = {
   ...withListOptions,
   ...withHrOptions,
   ...withHeadingOptions,
+  ...withQuoteOptions,
 
   // Marks
   ...withBoldOptions,
