@@ -33,6 +33,7 @@ export const classMap = {
   Coral: "text-c_coral",
   'Light Blue': "text-c_light_blue",
   'Michael Gray': "text-c_michael_gray",
+  'Dove Gray': "text-c_dove_gray",
 }
 
 // Styles dropdown allowing user to select a specific "style" that will be
