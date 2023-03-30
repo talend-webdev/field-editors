@@ -14,7 +14,29 @@ export const ListPlugin = () => {
       } else if (props.node.type === BLOCKS.OL_LIST) {
         return commonNode('ol')(props);
       } else if (props.node.type === BLOCKS.LIST_ITEM) {
-        return commonNode('li')(props);
+        const styles = { style: {}};
+
+        let isCheckList = false;
+        props.children.forEach(child => {
+          if (child.props.node.data.get("checkList")) isCheckList = true;
+        })
+
+        if (isCheckList) {
+          styles.style.paddingLeft = "3px";
+          styles.style.listStyle = "url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNCIgaGVpZ2h0PSIxMCIgdmlld0JveD0iMCAwIDE0IDEwIj48cG9seWxpbmUgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOTU4RUFBIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iMiIgcG9pbnRzPSIwIDE0Ny42MjcgNC45MTIgMTUyIDExLjI1MiAxNDUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDEuMTI5IC0xNDMuMTYpIi8+PC9zdmc+)";
+        }
+
+        if (isCheckList && !props.node.data.get("checkList")) {
+          _editor.setNodeByKey(props.node.key, {
+            data: { ...props.node.data.toJSON(), checkList: true }
+          });
+        }
+        else if (!isCheckList && props.node.data.get("checkList")) {
+          _editor.setNodeByKey(props.node.key, {
+            data: { ...props.node.data.toJSON(), checkList: false }
+          });
+        }
+        return commonNode('li', styles)(props);
       }
       return next();
     }

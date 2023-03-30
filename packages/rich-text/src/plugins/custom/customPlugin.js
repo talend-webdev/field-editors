@@ -8,7 +8,7 @@ const blockToTagMap = {
   [BLOCKS.HEADING_3]: 'h3',
   [BLOCKS.HEADING_4]: 'h4',
   [BLOCKS.HEADING_5]: 'h5',
-  [BLOCKS.HEADING_6]: 'h6'
+  [BLOCKS.HEADING_6]: 'h6',
 };
 
 // Apply changes from our custom plugins to the RTE UI itself.
